@@ -212,7 +212,7 @@ ENV/
 .spa_cache_dir/
 
 # # all generated wav files 
-# /generated-sounds/*
+/generated-sounds/*
 
 # mkdocs documentation
 /site
