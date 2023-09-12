@@ -2,12 +2,23 @@ import numpy as np
 from IPython.display import Audio
 import scipy.signal as sig
 import soundfile as sf
+from acoustics.room import t60_impulse, c50_from_file
 import matplotlib.pyplot as plt
 import scipy.signal as signal
 
+def compute_ir_stats(filename,bands):    
+    # Compute stats based on the RIR: 
+    rt30=t60_impulse(filename, bands, rt='t30')
+    rt20=t60_impulse(filename, bands, rt='t20')
+    edt=t60_impulse(filename, bands, rt='edt')
+    c50=c50_from_file(filename,bands)
+    # average over all bands 
+    rt30=np.mean(rt30)
+    rt20=np.mean(rt20)
+    edt=np.mean(edt)
+    c50=np.mean(c50)
 
-
-# ----------- FUNCTION DEFINITIONS: -----------
+    return rt30,rt20,edt,c50
 def bell(fc, fs, gain, Q):
     wc = 2 * np.pi * fc / fs
     c = 1.0 / np.tan(wc / 2.0)
