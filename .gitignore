@@ -213,6 +213,7 @@ ENV/
 
 # # all generated wav files 
 generated-sounds/*
+generated-rirs/*
 
 # mkdocs documentation
 /site
